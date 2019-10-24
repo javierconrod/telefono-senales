@@ -197,9 +197,9 @@ namespace GraficadorSeñales
                         indiceMaximo1 = i;
                     }
                 }
-                for (int j = señalResultante.Muestras.Count/2; j > señalResultante.Muestras.Count/2; j++)
+                for (int j = indiceMaximo1-1; j >= 0; j--)
                 {
-                    if (señalResultante.Muestras[j].Y < señalResultante.Muestras[indiceMaximo2].Y)
+                    if (señalResultante.Muestras[j].Y > señalResultante.Muestras[indiceMaximo1-1].Y)
                     {
                         indiceMaximo2 = j;
                     }
