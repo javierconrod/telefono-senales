@@ -190,24 +190,95 @@ namespace GraficadorSeñales
             {
                 int indiceMaximo1 = 0;
                 int indiceMaximo2 = 0;
-                for(int i = 0; i <= señalResultante.Muestras.Count/2; i++)
+                //indices para recorrer la frecuencia baja
+                int indiceInicial = (int)(690.0 * (double)(señal.Muestras.Count) / señalResultante.FrecuenciaMuestreo);
+                int indiceFinal = (int)(950.0 * (double)(señal.Muestras.Count) / señalResultante.FrecuenciaMuestreo);
+
+                int indiceAltaInicial = (int)(1200.0 * (double)(señal.Muestras.Count) / señalResultante.FrecuenciaMuestreo);
+                int indiceAltaFinal = (int)(1482.0 * (double)(señal.Muestras.Count) / señalResultante.FrecuenciaMuestreo);
+
+                for (int i = indiceInicial; i <= indiceFinal; i++)
                 {
                     if(señalResultante.Muestras[i].Y > señalResultante.Muestras[indiceMaximo1].Y)
                     {
                         indiceMaximo1 = i;
                     }
                 }
-                for (int j = indiceMaximo1-1; j >= 0; j--)
+
+                for (int j = indiceAltaInicial; j <= indiceAltaFinal; j++)
                 {
-                    if (señalResultante.Muestras[j].Y > señalResultante.Muestras[indiceMaximo1-1].Y)
+                    if (señalResultante.Muestras[j].Y > señalResultante.Muestras[indiceMaximo2].Y)
                     {
                         indiceMaximo2 = j;
                     }
                 }
                 double frecuencia = (double) (indiceMaximo1 * señal.FrecuenciaMuestreo / señalResultante.Muestras.Count);
                 double frecuencia2 = (double)(indiceMaximo2 * señal.FrecuenciaMuestreo / señalResultante.Muestras.Count);
-                lblHertz.Text = frecuencia.ToString("N") + " Hz";
-                lblHertz2.Text = frecuencia2.ToString("N") + " Hz";
+                lblHertzBaja.Text = frecuencia.ToString("N") + " Hz";
+                lblHertzAlta.Text = frecuencia2.ToString("N") + " Hz";
+                //imprimir la tecla
+                if(frecuencia >=695 && frecuencia <= 698 )
+                {
+                    if(frecuencia2 >= 1207 && frecuencia2 <= 1210)
+                    {
+                        lblTecla.Text = "1";
+                    }
+                    else if (frecuencia2 >= 1335 && frecuencia2 <= 1338)
+                    {
+                        lblTecla.Text = "2";
+                    }
+                    else if (frecuencia2 >= 1475 && frecuencia2 <= 1480)
+                    {
+                        lblTecla.Text = "3";
+                    }
+                }
+                else if (frecuencia >= 768 && frecuencia <= 775)
+                {
+                    if (frecuencia2 >= 1207 && frecuencia2 <= 1210)
+                    {
+                        lblTecla.Text = "4";
+                    }
+                    else if (frecuencia2 >= 1335 && frecuencia2 <= 1338)
+                    {
+                        lblTecla.Text = "5";
+                    }
+                    else if (frecuencia2 >= 1475 && frecuencia2 <= 1480)
+                    {
+                        lblTecla.Text = "6";
+                    }
+                }
+                else if (frecuencia >= 849 && frecuencia <= 855)
+                {
+                    if (frecuencia2 >= 1207 && frecuencia2 <= 1210)
+                    {
+                        lblTecla.Text = "7";
+                    }
+                    else if (frecuencia2 >= 1335 && frecuencia2 <= 1338)
+                    {
+                        lblTecla.Text = "8";
+                    }
+                    else if (frecuencia2 >= 1475 && frecuencia2 <= 1480)
+                    {
+                        lblTecla.Text = "9";
+                    }
+                }
+                else if (frecuencia >= 938 && frecuencia <= 945)
+                {
+                    if (frecuencia2 >= 1207 && frecuencia2 <= 1210)
+                    {
+                        lblTecla.Text = "*";
+                    }
+                    else if (frecuencia2 >= 1335 && frecuencia2 <= 1338)
+                    {
+                        lblTecla.Text = "0";
+                    }
+                    else if (frecuencia2 >= 1475 && frecuencia2 <= 1480)
+                    {
+                        lblTecla.Text = "#";
+                    }
+                }
+
+
             }
 
                lblAmplitudSuperior.Text = amplitudMaxima.ToString("F");
